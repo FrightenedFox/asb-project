@@ -26,12 +26,12 @@ create database link, unlimited tablespace to adv_works_user identified by adv_w
 
 
 
--- ### Add Sales History example scheme ### --
+-- ### Install Sales History example schema ### --
 
 -- List all containers
 select * from V$containers;
 
--- Create new PDB for SH scheme
+-- Create new PDB for SH schema
 create pluggable database PDBSH admin user sh_user identified by sh_user roles=(DBA)
 file_name_convert=('pdbseed', 'pdbsh');
 

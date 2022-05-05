@@ -5,7 +5,7 @@ FROM DUAL;
 
 
 
--- ### Add Sales History example scheme ### --
+-- ### Install Sales History example schema ### --
 
 -- Grant user all necessary permissions
 grant connect, resource, create session, create view, alter session, create sequence, create synonym,
@@ -25,5 +25,5 @@ datafile '/home/oracle/Documents/tablespace/users_tablespace.dbf' size 50M
     );
 
 
--- Check if the insertion was successful
+-- Check if the installation was successful
 select * from sh.SALES FETCH FIRST 10 ROWS ONLY;
