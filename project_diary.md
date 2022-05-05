@@ -6,7 +6,8 @@
 - Na serwerze zainstalowano system bazodanowy Oracle Database 21c Express Edition. 
 - Połączenie z serwerem nawiązano za pomocą słuchacza bazy danych protokołu SSH.
 - Postanowiono realizować projekt używając trzech schematów baz danych, a mianowicie:
-  - **AdventureWorks** - przykładowa baza danych systemu bazodanowego Microsoft SQL Serwer;
+  - **AdventureWorks (AW)** - przykładowa baza danych systemu bazodanowego Microsoft SQL Serwer;
+  - **Sales History (SH)**  - przykładowa baza danych systemu bazodanowego Oracle Database;
   - *Inne*...
 - Zainstalowano system bazodanowy Microsoft SQL Serwer 2019 w celu przeprowadzenia migracji bazy danych AdventureWorks do systemu bazodanowego Oracle Database.
 - Dla potrzeb migracji bazy danych AdventureWorks utworzono dwa kontenery: kontener migracyjny dla zapisywania wszystkich logów i metadanych oraz kontener docelowy.
@@ -14,4 +15,7 @@
   1. SQL Serwer, na którym właśnie znajdowała się baza AdbentureWorks;
   2. System Oracle Database, postawiony na serwerze, który przyjmował przeniesioną bazę;
   3. System Oracle Database, postawiony na maszynie wirtualnej, który obsługiwał kontener migracyjny.
+- Został usunięty zbędny kontener XEPDB1.
+- Utworzono nowy kontener PDBSH w celu późniejszego zainstalowania na nim schematu Sales History (dalej SH).
+- Pobrano i zainstalowano schemat SH na kontenerze PDBSH.
 - ...
