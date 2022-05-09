@@ -42,7 +42,10 @@ alter pluggable database PDBSH open read write;
 select name, open_mode from V$PDBS;
 
 -- Drop container XEPDB1
--- (paste code here, please)
+select * from V$containers;
+alter pluggable database xepdb1 close immediate;
+alter pluggable database xepdb1 unplug into 'home/oracle/Documents/xepdb1.xml'
+drop pluggable database xepdb1 keep datafiles;
 
 -- Unlock SYSTEM user
 ALTER USER SYSTEM ACCOUNT UNLOCK;
