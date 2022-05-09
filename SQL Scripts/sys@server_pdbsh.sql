@@ -27,3 +27,6 @@ datafile '/home/oracle/Documents/tablespace/users_tablespace.dbf' size 50M
 
 -- Check if the installation was successful
 select * from sh.SALES FETCH FIRST 10 ROWS ONLY;
+
+-- Connect to pdbsh
+@sh_main *password* users temp *password* /home/oracle/oracle_data_files/ /home/oracle/ora_log/ v3 localhost:1521/pdbsh
