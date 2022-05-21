@@ -17,5 +17,6 @@
   3. System Oracle Database, postawiony na maszynie wirtualnej, który obsługiwał kontener migracyjny.
 - Został usunięty zbędny kontener XEPDB1.
 - Utworzono nowy kontener PDBSH w celu późniejszego zainstalowania na nim schematu Sales History (dalej SH).
+- Utworzono nową przestrzeń tabel `sh_tablespace`, w której później zostanie zamieszczony schemat SH.
 - Pobrano i zainstalowano schemat SH na kontenerze PDBSH. Użyto instrukcji zaporoponowanej w repozytorium [db-sample-schemas](https://github.com/oracle-samples/db-sample-schemas).
 - ...
