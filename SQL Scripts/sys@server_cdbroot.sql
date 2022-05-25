@@ -1,5 +1,7 @@
--- Print user and container
+-- Print user
 select user from dual;
+
+-- Print container
 select SYS_CONTEXT('userenv', 'con_name') "Container name"
 FROM DUAL;
 
@@ -20,7 +22,7 @@ alter pluggable database PDBWORKS open read write;
 
 -- Grant user all necessary privileges
 alter session set container=PDBWORKS;
-select SYS_CONTEXT('userenv', 'con_name') "Container name"
+select SYS_CONTEXT('userenv', 'con_name') "Container name";
 grant connect, resource, create session, create view, alter session, create sequence, create synonym,
 create database link, unlimited tablespace to adv_works_user identified by adv_works_user;
 
@@ -44,7 +46,7 @@ select name, open_mode from V$PDBS;
 -- Drop container XEPDB1
 select * from V$containers;
 alter pluggable database xepdb1 close immediate;
-alter pluggable database xepdb1 unplug into 'home/oracle/Documents/xepdb1.xml'
+alter pluggable database xepdb1 unplug into 'home/oracle/Documents/xepdb1.xml';
 drop pluggable database xepdb1 including datafiles;
 
 -- Unlock SYSTEM user

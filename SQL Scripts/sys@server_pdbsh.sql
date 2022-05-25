@@ -1,5 +1,7 @@
--- Print user and container
+-- Print user
 select user from dual;
+
+-- Print container
 select SYS_CONTEXT('userenv', 'con_name') "Container name"
 FROM DUAL;
 
