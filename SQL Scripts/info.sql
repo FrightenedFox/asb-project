@@ -27,9 +27,24 @@ where df.FILE_ID = f.FILE_ID (+)
 order by df.TABLESPACE_NAME,
          df.FILE_NAME;
 
+-- List users
+select * from SYS.DBA_USERS;
+
 -- List tablespaces
-select * from dba_tablespaces;
-select * from user_tablespaces;
+select * from SYS.DBA_TABLESPACES;
+select * from SYS.USER_TABLESPACES;
 
 -- List tables
-select * from all_tables where owner='SYS';
+select * from SYS.ALL_TABLES where OWNER='SYS';
+
+-- List all possible privileges
+select * from SYS.SESSION_PRIVS order by PRIVILEGE;
+
+-- List roles
+select * from SYS.DBA_ROLE_PRIVS where GRANTEE like 'ADV_W%';
+select * from SYS.DBA_SYS_PRIVS where GRANTEE like 'ADV_W%';
+
+-- List role privileges
+select * from SYS.ROLE_SYS_PRIVS where ROLE like 'PDBWORKS_%';
+select * from SYS.ROLE_TAB_PRIVS where ROLE like 'PDBWORKS_%';
+
