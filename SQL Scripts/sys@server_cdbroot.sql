@@ -5,14 +5,18 @@ select user from dual;
 select SYS_CONTEXT('userenv', 'con_name') "Container name"
 FROM DUAL;
 
+-- Open all containers
+alter pluggable database PDBSH open read write;
+alter pluggable database PDBWORKS open read write;
+
 
 
 -- ### Migrate AdventureWorks2019 ### --
 
 -- Create PDB for migrated DB
 create pluggable database PDBWORKS
-admin user adv_works_user identified by adv_works_user roles=(DBA)
-file_name_convert=('pdbseed', 'pdbworks');
+    admin user adv_works_user identified by adv_works_user roles=(DBA)
+    file_name_convert=('pdbseed', 'pdbworks');
 
 select pdb_name, status from cdb_pdbs;
 select name, open_mode from V$PDBS;
@@ -35,7 +39,7 @@ select * from V$containers;
 
 -- Create new PDB for SH schema
 create pluggable database PDBSH admin user sh_user identified by sh_user roles=(DBA)
-file_name_convert=('pdbseed', 'pdbsh');
+    file_name_convert=('pdbseed', 'pdbsh');
 
 -- Open PDBSH
 select  pdb_name, status from SYS.CDB_PDBS;
@@ -54,120 +58,51 @@ ALTER USER SYSTEM ACCOUNT UNLOCK;
 
 
 
--- ### Create global users ###
+-- ### Create global users ### --
 
--- Set default script security settings
-alter session set "_ORACLE_SCRIPT"=true;
-
--- Turn on kernel resource limits
-alter system set resource_limit=true;
-
--- Create main tablespace for future users
-create tablespace glob_usr_ts
-datafile '/home/oracle/Documents/tablespace/glob_usr_ts.dbf' size 50M
-    autoextend on next 5M maxsize 500M
-    minimum extent 1M
-    default storage (
-    initial 2M
-    next 2M
-    pctincrease 0
-);
-
--- Create temporary tablespace for future users
-create temporary tablespace glob_usr_temp_ts
-    tempfile '/home/oracle/Documents/tablespace/glob_usr_temp_ts.dbf' size 200 M
-    reuse extent management local uniform size 10 M;
-
-
-
--- NOTE: everything that follows is dropped
-drop user c##glob_usr_1;
-drop user c##glob_usr_2;
-drop profile c##glob_usr_profile;
-drop role c##glob_usr_role_1;
-drop role c##glob_usr_role_2;
-
-
-
--- Create profile for global users
-create profile c##glob_usr_profile limit
-    sessions_per_user 5
-    connect_time 120
-    idle_time 60
-    password_reuse_time 3
-    password_reuse_max 7
-    failed_login_attempts 9
-    password_lock_time 1
-    password_life_time 300
-    password_grace_time 60;
-
--- Create roles for global users
-create role c##glob_usr_role_1;
-create role c##glob_usr_role_2;
-
--- Grant all necessary permissions
-grant create any sql profile,
-    drop any sql profile,   grant any object privilege,
-    drop any context,       create any context,
-    create any type,        alter any type,
-    drop any type,          create profile,
-    drop profile,           alter profile,
-    alter database,         create any view,
-    drop any view,          drop any index,
-    create any index,       delete any table,
-    create any table,       alter any table,
-    update any table,       insert any table,
-    select any table,       comment any table,
-    drop any table,         drop tablespace,
-    alter tablespace,       create tablespace,
-    create session,         audit system
-    to c##glob_usr_role_1 with admin option;
-grant IMP_FULL_DATABASE to c##glob_usr_role_2;
-
--- Check the permissions are granted successfully
-select * from ROLE_SYS_PRIVS where role='GLOB_USR_ROLE_1';
-select * from ROLE_SYS_PRIVS where role='GLOB_USR_ROLE_2';
-select * from SYS.DBA_ROLE_PRIVS where GRANTEE like '%GLOB_USR_ROLE%';
-
--- Create global users
-create user c##glob_usr_1
-    identified by psswd
-    default tablespace glob_usr_ts
-    temporary tablespace glob_usr_temp_ts
-    quota unlimited on glob_usr_ts
-    profile c##glob_usr_profile
+-- Create the global user for PDBSH container
+create user C##GLOB_USR_SH
+    identified by glob_usr_sh
     account unlock;
-create user c##glob_usr_2
-    identified by psswd
-    default tablespace glob_usr_ts
-    temporary tablespace glob_usr_temp_ts
-    quota 150M on glob_usr_ts
-    profile c##glob_usr_profile
-    account unlock
-    container=all;
 
--- Grant roles to global users
-grant c##glob_usr_role_1 to c##glob_usr_1 with admin option container=all;
-grant c##glob_usr_role_2 to c##glob_usr_2 container=all;
+-- Create the global user for PDBWORKS container
+create user C##GLOB_USR_WORKS
+    identified by glob_usr_works
+    account unlock;
 
--- Check granted roles
-select * from SYS.DBA_ROLE_PRIVS where GRANTEE like 'C##GLOB_USR_%';
+-- TODO: create third global user for the last container
+-- Create the global user for ... container
+-- create user C##GLOB_USR_
+--     identified by psswd
+--     account unlock;
+
+-- Check whether new users exist
+select * from SYS.DBA_USERS where USERNAME like '%GLOB_USR%';
+
+-- TODO: finish for the third global user
+-- Create grants for all users
+grant create session to C##GLOB_USR_SH container=all;
+grant create session to C##GLOB_USR_WORKS container=all;
+-- grant create session to C##GLOB_USR_ container=all;
 
 
 
--- ### Testing zone ###
 
-create user c##glob_usr_1
-    profile c##glob_usr_profile
-    account unlock
-    identified by glob;
-grant create session to c##glob_usr_1 container=all;
-connect sys/psswd as sysdba;
-connect c##glob_usr_1/glob@localhost:1521/pdbworks;
-alter session set "_ORACLE_SCRIPT"=true;
 
-create user test_usr identified by tst;
-drop user test_usr;
-select * from dba_users where USERNAME like '%GLOB%';
-select * from dba_profiles where PROFILE like '%GLOB%';
-select * from SYS.DBA_TABLESPACES;
+
+-- ### Check requirements ### --
+
+-- Containers:
+select scdb.PDB_NAME, scdb.STATUS, vpdb.OPEN_MODE, vcon.OPEN_TIME, vcon.CREATION_TIME
+from SYS.CDB_PDBS scdb,
+     V$PDBS vpdb,
+     V$CONTAINERS vcon
+where scdb.PDB_NAME = vpdb.NAME
+  AND scdb.PDB_NAME = vcon.NAME;
+
+
+-- Global users:
+select USERNAME, USER_ID, ACCOUNT_STATUS, EXPIRY_DATE, CREATED
+from SYS.DBA_USERS
+where USERNAME like 'C##%';
+

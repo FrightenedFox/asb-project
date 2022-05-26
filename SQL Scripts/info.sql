@@ -48,3 +48,5 @@ select * from SYS.DBA_SYS_PRIVS where GRANTEE like 'ADV_W%';
 select * from SYS.ROLE_SYS_PRIVS where ROLE like 'PDBWORKS_%';
 select * from SYS.ROLE_TAB_PRIVS where ROLE like 'PDBWORKS_%';
 
+-- List profile limits
+select * from SYS.DBA_PROFILES where PROFILE='PDBSH_USERS_PROFILE' order by RESOURCE_TYPE, RESOURCE_NAME;
