@@ -32,9 +32,3 @@ PDBSH =
 
 LISTENER_XE =
   (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 1521))
-
-LISTENER_PDBWORKS =
-  (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 57001))
-
-LISTENER_PDBSH =
-  (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 57002))
