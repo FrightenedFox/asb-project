@@ -24,12 +24,6 @@ select name, open_mode from V$PDBS;
 -- Open PDBWORKS
 alter pluggable database PDBWORKS open read write;
 
--- Grant user all necessary privileges
-alter session set container=PDBWORKS;
-select SYS_CONTEXT('userenv', 'con_name') "Container name";
-grant connect, resource, create session, create view, alter session, create sequence, create synonym,
-create database link, unlimited tablespace to adv_works_user identified by adv_works_user;
-
 
 
 -- ### Install Sales History example schema ### --
