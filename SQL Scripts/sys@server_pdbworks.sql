@@ -16,7 +16,6 @@ select * from all_users;
 grant connect, resource, create session, create view, alter session, create sequence, create synonym,
     create database link, unlimited tablespace to adv_works_user identified by adv_works_user;
 
-
 -- Check if the migration was successful
 select * from HUMANRESOURCES_ADVENTUREWORKS2019.DEPARTMENT;
 

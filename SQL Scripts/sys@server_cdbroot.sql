@@ -81,6 +81,9 @@ grant create session to C##GLOB_USR_WORKS container=all;
 
 
 
+-- ### System parameter file ### --
+create pfile = '/home/oracle/oracle_pfiles/pfileXE.ora' from spfile = '/opt/oracle/dbs/spfileXE.ora';
+
 
 
 
