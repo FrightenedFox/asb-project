@@ -109,7 +109,6 @@ alter user C##GLOB_USR_WORKS
 
 
 
-
 -- ### Check requirements ### --
 
 -- ADVENTURE WORKS users:

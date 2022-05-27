@@ -82,8 +82,38 @@ grant create session to C##GLOB_USR_WORKS container=all;
 
 
 -- ### System parameter file ### --
-create pfile = '/home/oracle/oracle_pfiles/pfileXE.ora' from spfile = '/opt/oracle/dbs/spfileXE.ora';
 
+-- Create pfile
+create pfile = '/home/oracle/oracle_pfiles/pfileXE.ora'
+    from spfile = '/opt/oracle/dbs/spfileXE.ora';
+
+-- Select server parameters
+select NAME, ISSYS_MODIFIABLE, ISINSTANCE_MODIFIABLE, ISSES_MODIFIABLE, VALUE
+from V$PARAMETER
+order by ISSES_MODIFIABLE desc;
+
+-- Select NLS system, instance and session parameters
+select DB.PARAMETER "Parameter name",
+       DB.VALUE "Database",
+       INS.VALUE "Instance",
+       SES.VALUE "Session"
+from SYS.NLS_DATABASE_PARAMETERS DB,
+     SYS.NLS_INSTANCE_PARAMETERS INS,
+     SYS.NLS_SESSION_PARAMETERS SES
+where DB.PARAMETER = INS.PARAMETER(+)
+  and DB.PARAMETER = SES.PARAMETER(+);
+
+-- Change session parameters
+alter session set NLS_TERRITORY=ESTONIA;
+alter session set NLS_LANGUAGE=ESTONIAN;
+alter session set NLS_DATE_FORMAT='YYYY-MM-DD';
+alter session set NLS_DATE_LANGUAGE=ESTONIAN;
+
+-- Change system parameters
+alter system set PROCESSES=450 scope=spfile;
+alter system set OPEN_CURSORS=450 scope=memory;
+alter system set SGA_TARGET=1200000000 scope=memory;
+alter system set SGA_MAX_SIZE=1200000000 scope=spfile;
 
 
 
@@ -97,9 +127,15 @@ from SYS.CDB_PDBS scdb,
 where scdb.PDB_NAME = vpdb.NAME
   AND scdb.PDB_NAME = vcon.NAME;
 
-
 -- Global users:
 select USERNAME, USER_ID, ACCOUNT_STATUS, EXPIRY_DATE, CREATED
 from SYS.DBA_USERS
 where USERNAME like 'C##%';
 
+-- Check NLS server parameters
+select TO_DATE('23-11-2022', 'dd-mm-yyyy') from dual;
+select TO_NUMBER('123,456.78', '9G999999D99', 'NLS_NUMERIC_CHARACTERS=''.,''') from dual;
+select TO_TIMESTAMP('10-SEP-02 14:10:10.123000','DD-MON-RR HH24:MI:SS.FF', 'NLS_DATE_LANGUAGE = American') from dual;
+SELECT TO_CHAR(73231.23, 'L099G999D99') from dual;
+select NAME, VALUE from V$PARAMETER
+where NAME in ('processes', 'sga_target', 'open_cursors');
