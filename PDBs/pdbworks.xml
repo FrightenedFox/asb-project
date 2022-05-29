@@ -2,7 +2,7 @@
 <PDB>
   <xmlversion>1</xmlversion>
   <pdbname>PDBWORKS</pdbname>
-  <cid>7</cid>
+  <cid>3</cid>
   <byteorder>1</byteorder>
   <vsn>352321536</vsn>
   <vsns>
@@ -17,7 +17,7 @@
   <ncdb2pdb>0</ncdb2pdb>
   <cdbid>2982155352</cdbid>
   <guid>DDF90CB837C14AD7E0536901A8C0D35F</guid>
-  <uscnbas>11375702</uscnbas>
+  <uscnbas>11399648</uscnbas>
   <uscnwrp>0</uscnwrp>
   <undoscn>289</undoscn>
   <rdba>4194824</rdba>
@@ -33,16 +33,16 @@
     <bmunitsize>8</bmunitsize>
     <file>
       <path>/opt/oracle/oradata/XE/pdbworks/system01.dbf</path>
-      <afn>13</afn>
+      <afn>23</afn>
       <rfn>1</rfn>
-      <createscnbas>8855672</createscnbas>
+      <createscnbas>11378256</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
       <fileblocks>61440</fileblocks>
       <blocksize>8192</blocksize>
       <vsn>352321536</vsn>
       <fdbid>1272920830</fdbid>
-      <fcpsb>11375693</fcpsb>
+      <fcpsb>11399642</fcpsb>
       <fcpsw>0</fcpsw>
       <frlsb>2571212</frlsb>
       <frlsw>0</frlsw>
@@ -68,16 +68,16 @@
     <bmunitsize>8</bmunitsize>
     <file>
       <path>/opt/oracle/oradata/XE/pdbworks/sysaux01.dbf</path>
-      <afn>14</afn>
+      <afn>24</afn>
       <rfn>4</rfn>
-      <createscnbas>8855676</createscnbas>
+      <createscnbas>11378260</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
-      <fileblocks>55040</fileblocks>
+      <fileblocks>56320</fileblocks>
       <blocksize>8192</blocksize>
       <vsn>352321536</vsn>
       <fdbid>1272920830</fdbid>
-      <fcpsb>11375693</fcpsb>
+      <fcpsb>11399642</fcpsb>
       <fcpsw>0</fcpsw>
       <frlsb>2571212</frlsb>
       <frlsw>0</frlsw>
@@ -103,16 +103,16 @@
     <bmunitsize>8</bmunitsize>
     <file>
       <path>/opt/oracle/oradata/XE/pdbworks/undotbs01.dbf</path>
-      <afn>15</afn>
+      <afn>25</afn>
       <rfn>9</rfn>
-      <createscnbas>8855679</createscnbas>
+      <createscnbas>11378263</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
       <fileblocks>33920</fileblocks>
       <blocksize>8192</blocksize>
       <vsn>352321536</vsn>
       <fdbid>1272920830</fdbid>
-      <fcpsb>11375693</fcpsb>
+      <fcpsb>11399642</fcpsb>
       <fcpsw>0</fcpsw>
       <frlsb>2571212</frlsb>
       <frlsw>0</frlsw>
@@ -138,12 +138,12 @@
     <bmunitsize>128</bmunitsize>
     <file>
       <path>/opt/oracle/oradata/XE/pdbworks/temp012022-04-03_10-59-08-709-AM.dbf</path>
-      <afn>4</afn>
+      <afn>3</afn>
       <rfn>1</rfn>
-      <createscnbas>8855673</createscnbas>
+      <createscnbas>11378257</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
-      <fileblocks>27392</fileblocks>
+      <fileblocks>27520</fileblocks>
       <blocksize>8192</blocksize>
       <vsn>352321536</vsn>
       <autoext>1</autoext>
@@ -167,16 +167,16 @@
     <bmunitsize>8</bmunitsize>
     <file>
       <path>/home/oracle/Documents/tablespace/adv_works_ts.dbf</path>
-      <afn>21</afn>
+      <afn>26</afn>
       <rfn>21</rfn>
-      <createscnbas>10107456</createscnbas>
+      <createscnbas>11378268</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
       <fileblocks>6400</fileblocks>
       <blocksize>8192</blocksize>
       <vsn>352321536</vsn>
       <fdbid>1272920830</fdbid>
-      <fcpsb>11375693</fcpsb>
+      <fcpsb>11399642</fcpsb>
       <fcpsw>0</fcpsw>
       <frlsb>2571212</frlsb>
       <frlsw>0</frlsw>
@@ -202,9 +202,9 @@
     <bmunitsize>1280</bmunitsize>
     <file>
       <path>/home/oracle/Documents/tablespace/adv_works_temp_ts.dbf</path>
-      <afn>7</afn>
+      <afn>9</afn>
       <rfn>1</rfn>
-      <createscnbas>10159931</createscnbas>
+      <createscnbas>11378257</createscnbas>
       <createscnwrp>0</createscnwrp>
       <status>1</status>
       <fileblocks>12800</fileblocks>
@@ -265,21 +265,21 @@
     <opatches/>
     <hasclob>1</hasclob>
     <awr>
-      <loadprofile>CPU used by this session=34.893231</loadprofile>
-      <loadprofile>DB time=80.892297</loadprofile>
-      <loadprofile>db block changes=787.009947</loadprofile>
-      <loadprofile>execute count=1421.738608</loadprofile>
-      <loadprofile>logons cumulative=1.021440</loadprofile>
-      <loadprofile>parse count (hard)=98.748124</loadprofile>
-      <loadprofile>parse count (total)=396.239248</loadprofile>
-      <loadprofile>physical reads=327.569448</loadprofile>
-      <loadprofile>physical writes=2.564366</loadprofile>
-      <loadprofile>redo size=127082.381058</loadprofile>
-      <loadprofile>session logical reads=12768.438755</loadprofile>
-      <loadprofile>user calls=1.874668</loadprofile>
-      <loadprofile>user commits=7.329443</loadprofile>
-      <loadprofile>user logons cumulative=0.005847</loadprofile>
-      <loadprofile>user rollbacks=0.013950</loadprofile>
+      <loadprofile>CPU used by this session=23.325073</loadprofile>
+      <loadprofile>DB time=54.113272</loadprofile>
+      <loadprofile>db block changes=590.718053</loadprofile>
+      <loadprofile>execute count=1067.224136</loadprofile>
+      <loadprofile>logons cumulative=0.768339</loadprofile>
+      <loadprofile>parse count (hard)=74.142669</loadprofile>
+      <loadprofile>parse count (total)=297.626223</loadprofile>
+      <loadprofile>physical reads=246.362578</loadprofile>
+      <loadprofile>physical writes=1.925031</loadprofile>
+      <loadprofile>redo size=95482.446436</loadprofile>
+      <loadprofile>session logical reads=9582.837851</loadprofile>
+      <loadprofile>user calls=1.416292</loadprofile>
+      <loadprofile>user commits=5.498337</loadprofile>
+      <loadprofile>user logons cumulative=0.004636</loadprofile>
+      <loadprofile>user rollbacks=0.010500</loadprofile>
     </awr>
     <hardvsnchk>0</hardvsnchk>
     <localundo>1</localundo>

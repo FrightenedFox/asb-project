@@ -112,7 +112,7 @@ alter user C##GLOB_USR_WORKS
 -- ### Check requirements ### --
 
 -- ADVENTURE WORKS users:
-select * from SYS.DBA_USERS where USERNAME like '%ADV%' order by EXPIRY_DATE desc;
+select * from SYS.DBA_USERS where USERNAME like '%WORKS%' order by EXPIRY_DATE desc;
 
 -- ADVENTURE WORKS tables:
 select * from HUMANRESOURCES_ADVENTUREWORKS2019.DEPARTMENT;
