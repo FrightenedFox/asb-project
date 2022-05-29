@@ -65,10 +65,14 @@
   |  `PDBSH`   | 57002 |
   |   `...`    | 57003 |
 
-  
-
 - Utworzono plik parametrów serwera `pfileXE.ora` jako kopię pliku `spfileXE.ora`. Przygotowano dwie wariacji pliku `pfileXE.ora`: `pfileXE1.ora` oraz `pfileXE2.ora`.
 
 - Przygotowano skrypt dla sprawdzenia zmian parametrów NLS.
+
+- Utworzono plik `pdbworks.xml` poprzez odpięcie kontenera `PDBWORKS`. 
+
+- Plik `pdbworks.xml` został przeniesiony do lokalnej maszyny wirtualnej. 
+
+- Sprawdzono kompatybilność pliku `pdbworks.xml` z bazą danych na maszynie wirtualnej. Ponieważ wersja SZBD Oracle na serwerze wynosi 21.0.0, a na maszynie wirtualnej - 18.0.0, to niema możliwości podłączenia kontenera `PDBWORKS` do aktualnego systemu bazodanowego na maszynie wirtualnej. (`screenshots 0210-0211`)
 
 - ...
