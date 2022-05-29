@@ -117,6 +117,17 @@ alter system set SGA_MAX_SIZE=1200000000 scope=spfile;
 
 
 
+-- ### Unplug/Plug PDB migration ### --
+
+-- Create pdbworks.xml file and plug that database back
+alter pluggable database PDBWORKS close immediate;
+alter pluggable database PDBWORKS unplug into '/home/oracle/oracle_pdbs/pdbworks.xml';
+drop pluggable database PDBWORKS keep datafiles;
+create pluggable database PDBWORKS using '/home/oracle/oracle_pdbs/pdbworks.xml' nocopy tempfile reuse;
+alter pluggable database PDBWORKS open read write;
+
+
+
 -- ### Check requirements ### --
 
 -- Containers:
