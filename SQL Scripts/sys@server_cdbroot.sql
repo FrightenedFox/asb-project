@@ -8,8 +8,7 @@ FROM DUAL;
 -- Open all containers
 alter pluggable database PDBSH open read write;
 alter pluggable database PDBWORKS open read write;
-
-
+alter pluggable database PDBLIB open read write;
 
 -- ### Migrate AdventureWorks2019 ### --
 
@@ -67,9 +66,9 @@ create user C##GLOB_USR_WORKS
 
 -- TODO: create third global user for the last container
 -- Create the global user for ... container
--- create user C##GLOB_USR_
---     identified by psswd
---     account unlock;
+create user C##GLOB_USR_LIB
+     identified by glob_usr_lib
+     account unlock;
 
 -- Check whether new users exist
 select * from SYS.DBA_USERS where USERNAME like '%GLOB_USR%';
@@ -78,7 +77,7 @@ select * from SYS.DBA_USERS where USERNAME like '%GLOB_USR%';
 -- Create grants for all users
 grant create session to C##GLOB_USR_SH container=all;
 grant create session to C##GLOB_USR_WORKS container=all;
--- grant create session to C##GLOB_USR_ container=all;
+grant create session to C##GLOB_USR_LIB container=all;
 
 
 
