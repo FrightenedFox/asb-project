@@ -7,7 +7,9 @@ FROM DUAL;
 
 
 
--- ### Check requirements ### --
+
+
+-- ### Check requirements on PDBSH for global user C##GLOB_USR_SH ### --
 
 -- c##glob_usr_sh has NO access to DBA (an error SHOULD appear):
 select * from SYS.DBA_USERS;

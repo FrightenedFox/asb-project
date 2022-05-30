@@ -106,10 +106,17 @@ alter user C##GLOB_USR_WORKS
 
 
 
+-- ### Unplug/Plug PDB migration ### --
+
+-- Get container datafiles paths
+select FILE_NAME, TABLESPACE_NAME, STATUS, ONLINE_STATUS
+from SYS.DBA_DATA_FILES;
 
 
 
--- ### Check requirements ### --
+
+
+-- ### Check requirements on PDBWORKS ### --
 
 -- ADVENTURE WORKS users:
 select * from SYS.DBA_USERS where USERNAME like '%WORKS%' order by EXPIRY_DATE desc;

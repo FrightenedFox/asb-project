@@ -7,7 +7,9 @@ FROM DUAL;
 
 
 
--- ### Check requirements ### --
+
+
+-- ### Check requirements on PDBWORKS for global user C##GLOB_USR_WORKS ### --
 
 -- c##glob_usr_works HAS access to DBA (NO errors should appear):
 select * from SYS.DBA_USERS;

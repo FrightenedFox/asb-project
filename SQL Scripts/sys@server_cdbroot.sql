@@ -18,6 +18,7 @@ create pluggable database PDBWORKS
     admin user adv_works_user identified by adv_works_user roles=(DBA)
     file_name_convert=('pdbseed', 'pdbworks');
 
+-- List current containers
 select pdb_name, status from cdb_pdbs;
 select name, open_mode from V$PDBS;
 
@@ -119,16 +120,20 @@ alter system set SGA_MAX_SIZE=1200000000 scope=spfile;
 
 -- ### Unplug/Plug PDB migration ### --
 
--- Create pdbworks.xml file and plug that database back
+-- Create pdbworks.xml file by unplugging PDBWORKS container
 alter pluggable database PDBWORKS close immediate;
 alter pluggable database PDBWORKS unplug into '/home/oracle/oracle_pdbs/pdbworks.xml';
 drop pluggable database PDBWORKS keep datafiles;
+
+-- Plug PDBWORKS container back
 create pluggable database PDBWORKS using '/home/oracle/oracle_pdbs/pdbworks.xml' nocopy tempfile reuse;
 alter pluggable database PDBWORKS open read write;
 
 
 
--- ### Check requirements ### --
+
+
+-- ### Check requirements on CDB$ROOT ### --
 
 -- Containers:
 select scdb.PDB_NAME, scdb.STATUS, vpdb.OPEN_MODE, vcon.OPEN_TIME, vcon.CREATION_TIME
@@ -148,5 +153,4 @@ select TO_DATE('23-11-2022', 'dd-mm-yyyy') from dual;
 select TO_NUMBER('123,456.78', '9G999999D99', 'NLS_NUMERIC_CHARACTERS=''.,''') from dual;
 select TO_TIMESTAMP('10-SEP-02 14:10:10.123000','DD-MON-RR HH24:MI:SS.FF', 'NLS_DATE_LANGUAGE = American') from dual;
 SELECT TO_CHAR(73231.23, 'L099G999D99') from dual;
-select NAME, VALUE from V$PARAMETER
-where NAME in ('processes', 'sga_target', 'open_cursors');
+select NAME, VALUE from V$PARAMETER where NAME in ('processes', 'sga_target', 'open_cursors');

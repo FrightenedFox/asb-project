@@ -118,8 +118,7 @@ alter user C##GLOB_USR_SH
 
 
 
-
--- ### Check requirements ### --
+-- ### Check requirements on PDBSH ### --
 
 -- SH users:
 select * from SYS.DBA_USERS where USERNAME like 'SH%';
