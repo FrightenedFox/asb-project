@@ -13,7 +13,7 @@
 - Postanowiono realizować projekt używając trzech schematów baz danych, a mianowicie:
   - `[002*]` **AdventureWorks (AW)** - przykładowa baza danych systemu bazodanowego Microsoft SQL Serwer;
   - [**Sales History (SH)**](https://github.com/oracle-samples/db-sample-schemas)  - przykładowa baza danych systemu bazodanowego Oracle Database;
-  - *Inny*...
+  - **Biblioteka** - baza danych zrobiona na zajęciach projektowych na przedmiocie "Bazy Danych" na semestrze III
   
 ## Migracja *Advanture Works*
 
@@ -22,7 +22,7 @@
 - `[0060-0121]` Dla potrzeb migracji bazy danych AdventureWorks utworzono dwa kontenery: kontener migracyjny dla zapisywania wszystkich logów i metadanych oraz kontener docelowy.
 
 - `[0030-0050, 0130-0150]` Skutecznie przeprowadzono migrację bazy danych AdventureWorks na kontener `PDBWORKS` za pośrednictwem narzędzia SQL Developer. W tym celu jednocześnie trzy systemy bazodanowe zostały połączone z programem SQL Developer: 
-  1. SQL Serwer, na którym właśnie znajdowała się baza AdbentureWorks;
+  1. SQL Serwer, na którym właśnie znajdowała się baza AdventureWorks;
   2. System Oracle Database, postawiony na serwerze, który przyjmował przeniesioną bazę;
   3. System Oracle Database, postawiony na maszynie wirtualnej, który obsługiwał kontener migracyjny.
 
@@ -33,7 +33,7 @@
 - Utworzono przestrzenie tabel w kontenerach:
   - `[032*]` `ADV_WORKS_TS` i `ADV_WORKS_TEMP_TS` w kontenerze `PDBWORKS`;
   - `[033*]` `SH_TABLESPACE` i `SH_TEMP_TABLESPACE` w kontenerze `PDBSH`;
-  - ...
+  - `[034*]` `LIB_TABLESPACE` i `LIB_TEMP_TABLESPACE` w kontenerze `PDBLIB`;
   
 - `[0160-0190]` Pobrano i zainstalowano schemat SH na kontenerze `PDBSH`. Użyto instrukcji zaproponowanej w repozytorium [db-sample-schemas](https://github.com/oracle-samples/db-sample-schemas). Dokonano skutecznego połączenia się z kontenerem `PDBSH`.
 
