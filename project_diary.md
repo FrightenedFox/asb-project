@@ -56,7 +56,7 @@
 - `[TBD]` Utworzono użytkowników globalnych na kontenerze `CDB$ROOT`:
   - `C##GLOB_USR_SH`, który otrzymał rolę `PDBSH_USER_ROLE` na kontenerze `PDBSH` oraz 100M pamięci na przestrzeni tabel `SH_TABLESPACE` i dostęp do przestrzeni `SH_TEMP_TABLESPACE`;
   - `C##GLOB_USR_WORKS`, który otrzymał rolę `PDBWORKS_ADMIN_ROLE` na kontenerze `PDBWORKS` oraz 100M na przestrzeni tabel `ADV_WORKS_TS` i dostęp do przestrzeni `ADV_WORKS_TEMP_TS`;
-  - ...
+  - `C##GLOB_USR_LIB`
   
 - `[036*]` Na końcu większości plików `.sql` przygotowano skrypty, które pozwalają sprawdzić wykonanie wymagań projektu.
 
