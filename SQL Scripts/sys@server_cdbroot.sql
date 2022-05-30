@@ -52,6 +52,22 @@ ALTER USER SYSTEM ACCOUNT UNLOCK;
 
 
 
+-- ### Own database ### --
+
+-- List all containers
+select * from V$containers;
+
+-- Create a new PDB for database LIBRARY
+create pluggable database PDBLIB admin user lib_user identified by lib_user roles=(DBA)
+    file_name_convert=('pdbseed', 'pdblib');
+
+-- Open PDBSH
+select name, open_mode from V$PDBS;
+alter pluggable database PDBSH open read write;
+select name, open_mode from V$PDBS;
+
+
+
 -- ### Create global users ### --
 
 -- Create the global user for PDBSH container
