@@ -15,7 +15,7 @@
   - [**Sales History (SH)**](https://github.com/oracle-samples/db-sample-schemas)  - przykładowa baza danych systemu bazodanowego Oracle Database;
   - **Biblioteka** - baza danych zrobiona na zajęciach projektowych na przedmiocie "Bazy Danych" na semestrze III
   
-## Migracja *Advanture Works*
+## Migracja **Advanture Works**
 
 - `[0010]` Zainstalowano system bazodanowy Microsoft SQL Serwer 2019 w celu przeprowadzenia migracji bazy danych AdventureWorks do systemu bazodanowego Oracle Database.
 
@@ -26,16 +26,26 @@
   2. System Oracle Database, postawiony na serwerze, który przyjmował przeniesioną bazę;
   3. System Oracle Database, postawiony na maszynie wirtualnej, który obsługiwał kontener migracyjny.
 
-## *Sales History*, users, tablespaces, profiles and roles 
+## Oracle Sample **Sales History**
 
 - `[031*]` Utworzono nowy kontener `PDBSH` w celu późniejszego zainstalowania na nim schematu Sales History (dalej SH).
+
+- `[0160-0190]` Pobrano i zainstalowano schemat SH na kontenerze `PDBSH`. Użyto instrukcji zaproponowanej w repozytorium [db-sample-schemas](https://github.com/oracle-samples/db-sample-schemas). Dokonano skutecznego połączenia się z kontenerem `PDBSH`.
+
+## Own database **Biblioteka**
+
+- Utworzono kontainer `PDBLIB` dla zainstalowania własnego schematu Biblioteka.
+
+- ...
+
+[//]: # (TODO: Zakończyć tworzenie schematu Biblioteka)
+
+## Users, tablespaces, profiles and roles
 
 - Utworzono przestrzenie tabel w kontenerach:
   - `[032*]` `ADV_WORKS_TS` i `ADV_WORKS_TEMP_TS` w kontenerze `PDBWORKS`;
   - `[033*]` `SH_TABLESPACE` i `SH_TEMP_TABLESPACE` w kontenerze `PDBSH`;
-  - `[037*]` `LIB_TABLESPACE` i `LIB_TEMP_TABLESPACE` w kontenerze `PDBLIB`;
-  
-- `[0160-0190]` Pobrano i zainstalowano schemat SH na kontenerze `PDBSH`. Użyto instrukcji zaproponowanej w repozytorium [db-sample-schemas](https://github.com/oracle-samples/db-sample-schemas). Dokonano skutecznego połączenia się z kontenerem `PDBSH`.
+  - `[0410]` `LIB_TABLESPACE` i `LIB_TEMP_TABLESPACE` w kontenerze `PDBLIB`;
 
 - `[034*]` Na kontenerze `PDBWORKS` utworzono:
   - dwie roli:
@@ -52,11 +62,20 @@
   - dwóch użytkowników lokalnych:
     - `SH_USER` z rolą `PDB_DBA` i profilem `PDBSH_USERS_PROFILE`;
     - `SH_SECOND_USER` z rolą `PDBSH_USER_ROLE` i profilem `PDBSH_USERS_PROFILE`.
+
+- `[040*]` Na kontenerze `PDBLIB` utworzono:
+  - dwie roli:
+    - `PDBLIB_ADMIN_ROLE`, która pozwala na edycję i przeglądanie wszystkich tabel na kontenerze;
+    - `PDBLIB_USER_ROLE`, która pozwala przeglądać i minimalnie edytować parametry kontenera;
+  - profil `PDBLIB_USERS_PROFILE`;
+  - dwóch użytkowników lokalnych:
+    - `LIB_ADMIN` z rolą `PDBLIB_ADMIN_ROLE` i profilem `PDBLIB_USERS_PROFILE`;
+    - `LIB_USER` z rolą `PDBLIB_USER_ROLE` i profilem `PDBLIB_USERS_PROFILE`.
   
 - `[TBD]` Utworzono użytkowników globalnych na kontenerze `CDB$ROOT`:
   - `C##GLOB_USR_SH`, który otrzymał rolę `PDBSH_USER_ROLE` na kontenerze `PDBSH` oraz 100M pamięci na przestrzeni tabel `SH_TABLESPACE` i dostęp do przestrzeni `SH_TEMP_TABLESPACE`;
   - `C##GLOB_USR_WORKS`, który otrzymał rolę `PDBWORKS_ADMIN_ROLE` na kontenerze `PDBWORKS` oraz 100M na przestrzeni tabel `ADV_WORKS_TS` i dostęp do przestrzeni `ADV_WORKS_TEMP_TS`;
-  - `C##GLOB_USR_LIB`
+  - `C##GLOB_USR_LIB`, który otrzymał rolę `PDBLIB_USER_ROLE` na kontenerze `PDBLIB` oraz 100M na przestrzeni tabel `LIB_TABLESPACE` i dostęp do przestrzeni `LIB_TEMP_TABLESPACE`.
   
 - `[036*]` Na końcu większości plików `.sql` przygotowano skrypty, które pozwalają sprawdzić wykonanie wymagań projektu.
 
@@ -64,12 +83,12 @@
 
 - `[037*]` Przygotowano aliasy listenerów dla każdego kontenera. Utworzono nowe pliki `listener.ora` i `tnsnames.ora`. Każdy kontener otrzymał osobny port listenera: 
 
-  |  Kontener  | Port  |
+  | Kontener   | Port  |
   | :--------: | :---: |
   | `CDB$ROOT` | 1521  |
   | `PDBWORKS` | 57001 |
-  |  `PDBSH`   | 57002 |
-  |   `...`    | 57003 |
+  | `PDBSH`    | 57002 |
+  | `PDBLIB`   | 57003 |
 
 - `[038*]` Utworzono plik parametrów serwera `pfileXE.ora` jako kopię pliku `spfileXE.ora`. Przygotowano dwie wariacji pliku `pfileXE.ora`: `pfileXE1.ora` oraz `pfileXE2.ora`.
 
@@ -89,6 +108,13 @@
 
 - `[023*]` Skutecznie utworzono nowy kontyner `PDBWORKS` na maszynie wirtualnej używając pliku `pdbworks.xml`. 
 
-- `[0240-0252]` Otworzono kontener `PDBWORKS` na maszynie wirtualnej (`OPEN READ WRITE`) oraz sprawdzono integralność jego danych. 
+- `[0240-0252]` Otworzono kontener `PDBWORKS` na maszynie wirtualnej (`OPEN READ WRITE`) oraz sprawdzono integralność jego danych.
 
 - ...
+
+
+## Tasks
+
+- [ ] Plug/Unplug all containers
+- [ ] Transfer new `tnsnames.ora` and `lisetener.ora`
+- [ ] Create tables on `PDBLIB` 

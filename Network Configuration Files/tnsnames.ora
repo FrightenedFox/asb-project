@@ -30,5 +30,15 @@ PDBSH =
     )
   )
 
+PDBLIB =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 57003))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PDBSH)
+    )
+  )
+
+
 LISTENER_XE =
   (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 1521))

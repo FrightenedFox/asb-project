@@ -3,12 +3,15 @@
 |        Login        |      Password      |
 |:-------------------:|:------------------:|
 |  `C##GLOB_USR_SH`   |   `glob_usr_sh`    |
-| `C##GLOB_USR_WORKS` |   `glob_usr_sh`    |
+| `C##GLOB_USR_WORKS` |  `glob_usr_works`  |
+| `C##GLOB_USER_LIB`  |  `glob_user_lib`   |
 |        `SH`         | _Oracle Password_  |
 |      `SH_USER`      |     `sh_user`      |
 |  `SH_SECOND_USER`   |  `sh_second_user`  |
 |  `ADV_WORKS_USER`   |  `adv_works_user`  |
 | `ADV_WORKS_VIEWER`  | `adv_works_viewer` |
+|     `LIB_USER`      |     `lib_user`     |
+|     `LIB_ADMIN`     |    `lib_admin`     |
 
 ## Server parameter files (PFILES)
 

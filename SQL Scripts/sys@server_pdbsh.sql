@@ -121,7 +121,7 @@ alter user C##GLOB_USR_SH
 -- ### Check requirements on PDBSH ### --
 
 -- SH users:
-select * from SYS.DBA_USERS where USERNAME like 'SH%';
+select * from SYS.DBA_USERS where USERNAME like '%SH%';
 
 -- SH tables:
 select * from SH.SALES FETCH FIRST 10 ROWS ONLY;

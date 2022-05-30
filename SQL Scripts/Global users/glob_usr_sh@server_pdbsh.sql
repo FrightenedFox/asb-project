@@ -26,7 +26,11 @@ select OWNER, TABLE_NAME, TABLESPACE_NAME from SYS.ALL_TABLES where OWNER='SH';
 
 -- c##glob_usr_sh HAS access to SYS, but on this container there are NO Adventure Works tables
 -- (NO errors should appear, NO rows should be found):
-select OWNER, TABLE_NAME, TABLESPACE_NAME from SYS.ALL_TABLES where OWNER like '%ADVENTUREWORKS2019%';
+select OWNER, TABLE_NAME, TABLESPACE_NAME
+from SYS.ALL_TABLES
+where OWNER like '%ADVENTUREWORKS2019%'
+   or OWNER like '%LIB%';
+
 
 -- c##glob_usr_sh CAN create tables (NO errors should appear):
 create table PRACOWNICY_SH(
@@ -46,3 +50,6 @@ select * from PRACOWNICY_SH;
 select OWNER, TABLE_NAME, TABLESPACE_NAME, STATUS
 from SYS.ALL_TABLES
 where TABLE_NAME = 'PRACOWNICY_SH';
+
+-- Drop table PRACOWNICY_SH
+drop table PRACOWNICY_SH;
