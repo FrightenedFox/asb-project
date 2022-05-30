@@ -33,7 +33,7 @@
 - Utworzono przestrzenie tabel w kontenerach:
   - `[032*]` `ADV_WORKS_TS` i `ADV_WORKS_TEMP_TS` w kontenerze `PDBWORKS`;
   - `[033*]` `SH_TABLESPACE` i `SH_TEMP_TABLESPACE` w kontenerze `PDBSH`;
-  - `[034*]` `LIB_TABLESPACE` i `LIB_TEMP_TABLESPACE` w kontenerze `PDBLIB`;
+  - `[037*]` `LIB_TABLESPACE` i `LIB_TEMP_TABLESPACE` w kontenerze `PDBLIB`;
   
 - `[0160-0190]` Pobrano i zainstalowano schemat SH na kontenerze `PDBSH`. Użyto instrukcji zaproponowanej w repozytorium [db-sample-schemas](https://github.com/oracle-samples/db-sample-schemas). Dokonano skutecznego połączenia się z kontenerem `PDBSH`.
 
