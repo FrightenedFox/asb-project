@@ -80,7 +80,6 @@ create user C##GLOB_USR_WORKS
     identified by glob_usr_works
     account unlock;
 
--- TODO: create third global user for the last container
 -- Create the global user for ... container
 create user C##GLOB_USR_LIB
      identified by glob_usr_lib
@@ -89,7 +88,6 @@ create user C##GLOB_USR_LIB
 -- Check whether new users exist
 select * from SYS.DBA_USERS where USERNAME like '%GLOB_USR%';
 
--- TODO: finish for the third global user
 -- Create grants for all users
 grant create session to C##GLOB_USR_SH container=all;
 grant create session to C##GLOB_USR_WORKS container=all;
