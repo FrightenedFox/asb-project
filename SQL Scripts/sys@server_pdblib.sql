@@ -31,3 +31,8 @@ create tablespace lib_tablespace
 create temporary tablespace lib_temp_tablespace
     tempfile '/home/oracle/Documents/tablespace/lib_temp_tablespace.dbf' size 500 M
     reuse extent management local uniform size 10 M;
+
+-- Set default and temporary tablespace to LIB_USER
+alter user lib_user
+    default tablespace LIB_TABLESPACE quota unlimited on LIB_TABLESPACE
+    temporary tablespace LIB_TEMP_TABLESPACE;
