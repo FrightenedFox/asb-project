@@ -19,7 +19,6 @@ LISTENER =
     )
     (DESCRIPTION =
       (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 57003))
-      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC57002))
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC57003))
     )
   )
-  
