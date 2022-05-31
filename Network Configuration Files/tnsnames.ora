@@ -35,7 +35,7 @@ PDBLIB =
     (ADDRESS = (PROTOCOL = TCP)(HOST = oracle21c.vmorskyi.pl)(PORT = 57003))
     (CONNECT_DATA =
       (SERVER = DEDICATED)
-      (SERVICE_NAME = PDBSH)
+      (SERVICE_NAME = PDBLIB)
     )
   )
 

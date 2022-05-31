@@ -96,7 +96,7 @@
   Każdy kontener otrzymał osobny port listenera:
 
   | Kontener   | Port  |
-        | :--------: | :---: |
+  | :--------: | :---: |
   | `CDB$ROOT` | 1521  |
   | `PDBWORKS` | 57001 |
   | `PDBSH`    | 57002 |
@@ -138,5 +138,5 @@
 
 - [X] Plug/Unplug all containers
 - [X] Create `PDBLIB` and insert data
-- [ ] Transfer new `tnsnames.ora` and `lisetener.ora`
+- [X] Transfer new `tnsnames.ora` and `lisetener.ora`
 - [ ] Prepare DataGrip connections with all users
