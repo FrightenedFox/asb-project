@@ -7,8 +7,8 @@
 - `[screen from server]` W celu umożliwienia jednoczesnej pracy nad projektem został przygotowany stary komputer, który
   będzie występować w roli serwera. Na tym komputerze został zainstalowany system operacyjny Red Hat Enterprise Linux 8.
 
-- Na
-  serwerze [zainstalowano](https://docs.oracle.com/en/database/oracle/oracle-database/21/xeinl/installing-oracle-database-xe.html#GUID-728E4F0A-DBD1-43B1-9837-C6A460432733)
+- Na serwerze
+  [zainstalowano](https://docs.oracle.com/en/database/oracle/oracle-database/21/xeinl/installing-oracle-database-xe.html#GUID-728E4F0A-DBD1-43B1-9837-C6A460432733)
   system bazodanowy Oracle Database 21c Express Edition.
 
 - `[0300]` Połączenie z serwerem nawiązano za pomocą słuchacza bazy danych protokołu SSH.
@@ -44,7 +44,7 @@
 
 ## Own database **Biblioteka**
 
-- Utworzono kontainer `PDBLIB` dla zainstalowania własnego schematu Biblioteka.
+- Utworzono kontener `PDBLIB` dla zainstalowania własnego schematu Biblioteka.
 
 - `[0420-0430]` Utworzono tabele schematu bazodanowego *Biblioteka*. Wygenerowano diagram relacyjnej bazy danych.
 
@@ -80,7 +80,7 @@
         - `LIB_ADMIN` z rolą `PDBLIB_ADMIN_ROLE` i profilem `PDBLIB_USERS_PROFILE`;
         - `LIB_USER` z rolą `PDBLIB_USER_ROLE` i profilem `PDBLIB_USERS_PROFILE`.
 
-- `[TBD]` Utworzono użytkowników globalnych na kontenerze `CDB$ROOT`:
+- `[0460]` Utworzono użytkowników globalnych na kontenerze `CDB$ROOT`:
     - `C##GLOB_USR_SH`, który otrzymał rolę `PDBSH_USER_ROLE` na kontenerze `PDBSH` oraz 100M pamięci na przestrzeni
       tabel `SH_TABLESPACE` i dostęp do przestrzeni `SH_TEMP_TABLESPACE`;
     - `C##GLOB_USR_WORKS`, który otrzymał rolę `PDBWORKS_ADMIN_ROLE` na kontenerze `PDBWORKS` oraz 100M na przestrzeni
@@ -96,7 +96,7 @@
   Każdy kontener otrzymał osobny port listenera:
 
   | Kontener   | Port  |
-  | :--------: | :---: |
+        | :--------: | :---: |
   | `CDB$ROOT` | 1521  |
   | `PDBWORKS` | 57001 |
   | `PDBSH`    | 57002 |
@@ -107,11 +107,11 @@
 
 - `[039*]` Przygotowano skrypt dla sprawdzenia zmian parametrów NLS.
 
+## Plug/Unplug
+
 - `[0270]` Utworzono plik `pdbworks.xml` poprzez odpięcie kontenera `PDBWORKS`.
 
 - `[028*]` Plik `pdbworks.xml` oraz pliki bazodanowe `*.dbf` zostały przeniesione do lokalnej maszyny wirtualnej.
-
-## Plug/Unplug
 
 - `[0290]` Kontener `PDBWORKS` został ponownie podłączony do bazy danych.
 
@@ -122,14 +122,21 @@
 - `[0220]` Zaktualizowano SZBD Oracle na maszynie wirtualnej do wersji 21.3.0. Tym razem plik `pdbworks.xml` już jest
   kompatybilny.
 
-- `[023*]` Skutecznie utworzono nowy kontyner `PDBWORKS` na maszynie wirtualnej używając pliku `pdbworks.xml`.
+- `[023*]` Skutecznie utworzono nowy kontener `PDBWORKS` na maszynie wirtualnej używając pliku `pdbworks.xml`.
 
 - `[0240-0252]` Otworzono kontener `PDBWORKS` na maszynie wirtualnej (`OPEN READ WRITE`) oraz sprawdzono integralność
   jego danych.
 
-- ...
+- `[044*]` Utworzono pliki metadanych `pdbsh.xml` i `pdblib.xml` poprzez odpięcie kontenerów `PDBSH` i `PDBLIB`.
+  Wspomniany pliki oraz pliki bazodanowe `*.dbf` zostały przeniesione do lokalnej maszyny wirtualnej.
 
-## Tasks TBD
+- `[045*]` Sprawdzono kompatybilność pliku metadanych `pdbsh.xml` z bazą danych na maszynie wirtualnej. Wszystko jest
+  ok. Zatem skutecznie utworzono nowy kontener `PDBSH` na maszynie wirtualnej używając pliku `pdbsh.xml` oraz plików
+  bazodanowych `*.dbf`. Otworzono kontener i sprawdzono integralność jego danych.
 
-- [ ] Plug/Unplug all containers
-- [ ] Transfer new `tnsnames.ora` and `lisetener.ora` 
+## TBD
+
+- [X] Plug/Unplug all containers
+- [X] Create `PDBLIB` and insert data
+- [ ] Transfer new `tnsnames.ora` and `lisetener.ora`
+- [ ] Prepare DataGrip connections with all users

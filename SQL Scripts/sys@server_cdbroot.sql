@@ -44,7 +44,7 @@ select name, open_mode from V$PDBS;
 -- Drop container XEPDB1
 select * from V$containers;
 alter pluggable database xepdb1 close immediate;
-alter pluggable database xepdb1 unplug into 'home/oracle/Documents/xepdb1.xml';
+alter pluggable database xepdb1 unplug into '/home/oracle/Documents/xepdb1.xml';
 drop pluggable database xepdb1 including datafiles;
 
 -- Unlock SYSTEM user
@@ -138,11 +138,32 @@ alter pluggable database PDBWORKS close immediate;
 alter pluggable database PDBWORKS unplug into '/home/oracle/oracle_pdbs/pdbworks.xml';
 drop pluggable database PDBWORKS keep datafiles;
 
+-- Create pdbsh.xml file by unplugging PDBSH container
+alter pluggable database PDBSH close immediate;
+alter pluggable database PDBSH unplug into '/home/oracle/oracle_pdbs/pdbsh.xml';
+drop pluggable database PDBSH keep datafiles;
+
+-- Create pdblib.xml file by unplugging PDBLIB container
+alter pluggable database PDBLIB close immediate;
+alter pluggable database PDBLIB unplug into '/home/oracle/oracle_pdbs/pdblib.xml';
+drop pluggable database PDBLIB keep datafiles;
+
+-- Copy meta and data files using BASH:
+-- cp /home/oracle/oracle_pdbs/* /mnt/USB/Oracle/PDBs/
+-- cp /home/oracle/Documents/tablespace/* /mnt/USB/Oracle/Tablespaces/
+-- cp -r /opt/oracle/oradata/XE/* /mnt/USB/Oracle/Oradata/
+
 -- Plug PDBWORKS container back
 create pluggable database PDBWORKS using '/home/oracle/oracle_pdbs/pdbworks.xml' nocopy tempfile reuse;
 alter pluggable database PDBWORKS open read write;
 
+-- Plug PDBSH container back
+create pluggable database PDBSH using '/home/oracle/oracle_pdbs/pdbsh.xml' nocopy tempfile reuse;
+alter pluggable database PDBSH open read write;
 
+-- Plug PDBLIB container back
+create pluggable database PDBLIB using '/home/oracle/oracle_pdbs/pdblib.xml' nocopy tempfile reuse;
+alter pluggable database PDBLIB open read write;
 
 
 
