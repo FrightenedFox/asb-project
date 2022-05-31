@@ -72,7 +72,7 @@
         - `SH_SECOND_USER` z rolą `PDBSH_USER_ROLE` i profilem `PDBSH_USERS_PROFILE`.
 
 - `[040*]` Na kontenerze `PDBLIB` utworzono:
-    - dwie roli:
+    - dwie role:
         - `PDBLIB_ADMIN_ROLE`, która pozwala na edycję i przeglądanie wszystkich tabel na kontenerze;
         - `PDBLIB_USER_ROLE`, która pozwala przeglądać i minimalnie edytować parametry kontenera;
     - profil `PDBLIB_USERS_PROFILE`;
