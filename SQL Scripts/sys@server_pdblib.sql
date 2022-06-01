@@ -110,9 +110,10 @@ alter user C##GLOB_USR_LIB
 -- PDBLIB users:
 select * from SYS.DBA_USERS where USERNAME like '%LIB%';
 
--- TODO: LIB tables:
+-- LIB tables
+select * from LIB_ADMIN.KSIAZKA;
 
--- TODO: LIB tables tablespaces:
+-- LIB tables tablespaces:
 select OWNER, TABLE_NAME, TABLESPACE_NAME from SYS.ALL_TABLES where OWNER like '%LIB%';
 
 -- LIB_TABLESPACE parameters:
